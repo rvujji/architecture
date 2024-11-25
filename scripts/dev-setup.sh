@@ -10,4 +10,5 @@ docker run -d --name mongodb-container -p 27017:27017 -v D:/docker/mongo-data:/d
 ## FastAPI docker setup
 
 ## Nodejs docker setup
+docker pull node:latest
 
