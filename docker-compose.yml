@@ -33,6 +33,5 @@ services:
       - "27017:27017"
     volumes:
       - type: bind
-        source: ./database/mongo-data
+        source: D:/docker/mongo-data
         target: /data/db
-
