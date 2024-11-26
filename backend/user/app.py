@@ -1,10 +1,10 @@
-rom flask import Flask
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route('/')
 def user():
-    return "User Service"
+    return "User Service dasf"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='0.0.0.0', port=5002, debug=True, use_reloader=True)
