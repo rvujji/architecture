@@ -4,16 +4,25 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
-  notificationservice:
+      - "3000:3000"  # Expose frontend on port 3000
+
+notificationservice:
     build: ./backend/notifications
     ports:
       - "5001:5001" # Map port 5001 of the container to port 5001 on the host machine
+    volumes:
+      - ./backend/notifications:/app  # Mount the local Notificatons folder to the /app directory in the container
+    environment:
+      - FLASK_ENV=development  # Set Flask environment to development for debugging
 
   userservice:
     build: ./backend/user
     ports:
       - "5002:5002" # Map port 5002 of the container to port 5002 on the host machine
+    volumes:
+      - ./backend/user:/app  # Mount the local User folder to the /app directory in the container
+    environment:
+      - FLASK_ENV=development  # Set Flask environment to development for debugging
 
   mongodb:
     image: mongo:latest
