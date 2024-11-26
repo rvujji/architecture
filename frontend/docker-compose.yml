@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app # Bind mount the current directory
+      - /usr/src/app/node_modules # Exclude node_modules to prevent conflicts
+    ports:
+      - "3000:3000" # Map container port to host
+    environment:
+      - NODE_ENV=development
+    command: ["nodemon", "app.js"] # Use nodemon for hot-reloading
+

@@ -1,1 +1,35 @@
-
+{
+  "name": "scrapit",
+  "version": "1.0.0",
+  "description": "ScrapIt - A platform for scrap sellers, buyers, and recyclers, offering real-time logistics, tracking, and a spare parts marketplace.",
+  "main": "app.js",
+  "keywords": [
+    "scrap",
+    "marketplace",
+    "recycling",
+    "logistics",
+    "tracking",
+    "spare-parts"
+  ],
+  "author": "Raj Vujji",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "mongoose": "^7.5.2",
+    "jsonwebtoken": "^9.0.0",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "react": "^18.2.0",
+    "expo": "^49.0.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "eslint": "^8.50.0",
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
