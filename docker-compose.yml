@@ -1,6 +1,11 @@
 version: "3.8"
 
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"  # Expose frontend on port 3000
+
   notificationservice:
     build: ./backend/notifications
     ports:
@@ -18,4 +23,14 @@ services:
       - ./backend/user:/app  # Mount the local User folder to the /app directory in the container
     environment:
       - FLASK_ENV=development  # Set Flask environment to development for debugging
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: D:/docker/mongo-data
+        target: /data/db
 
