@@ -1,1 +1,13 @@
 
+ersion: '3.8'
+
+services:
+  service1:
+    build: ./backend/notifications
+    ports:
+      - "5001:5001"  # Map port 5001 of the container to port 5001 on the host machine
+
+  service2:
+    build: ./backend/user
+    ports:
+      - "5002:5002"  # Map port 5002 of the container to port 5002 on the host machine
