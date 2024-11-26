@@ -1,12 +1,26 @@
 version: "3.8"
 
 services:
-  service1:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+  notificationservice:
     build: ./backend/notifications
     ports:
       - "5001:5001" # Map port 5001 of the container to port 5001 on the host machine
 
-  service2:
+  userservice:
     build: ./backend/user
     ports:
       - "5002:5002" # Map port 5002 of the container to port 5002 on the host machine
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: D:/docker/mongo-data
+        target: /data/db
