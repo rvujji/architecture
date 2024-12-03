@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code into the container
 COPY app.py /
+COPY db_manager.py /
 COPY test_app.py /
 
 # Expose port 5001 for Notification Service

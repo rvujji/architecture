@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from bson import ObjectId
+#from pymongo import PyMongoError
 
 class DatabaseManager:
     def __init__(self, connection_string: str, db_name: str, collection_name: str, max_pool_size: int = 100, min_pool_size: int = 1):
@@ -50,7 +51,7 @@ class DatabaseManager:
             return f"Transaction failed: {str(e)}"
         finally:
             session.end_session()
-'''example
+    '''example
     def update_item_and_log(db_manager, item_id, item_updates, log_entry):
     """
     Update an item in the item collection and insert a log entry in the log collection.
@@ -82,8 +83,7 @@ class DatabaseManager:
     # Execute the transaction
     result = update_item_and_log(db_manager, item_id, item_updates, log_entry)
     print(result)
-'''
-
+    '''
     def insert_with_transaction(self, data_list: list):
         """
         Insert multiple documents within a transaction.
