@@ -1,30 +1,41 @@
 version: "3.8"
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"  # Expose frontend on port 3000
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000" # Expose frontend on port 3000
 
-  notificationservice:
-    build: ./backend/notifications
-    ports:
-      - "5001:5001" # Map port 5001 of the container to port 5001 on the host machine
-    volumes:
-      - ./backend/notifications:/app  # Mount the local Notificatons folder to the /app directory in the container
-    environment:
-      - FLASK_ENV=development  # Set Flask environment to development for debugging
+  # notificationservice:
+  #   build: ./backend/notifications
+  #   ports:
+  #     - "5001:5001" # Map port 5001 of the container to port 5001 on the host machine
+  #   volumes:
+  #     - ./backend/notifications:/app # Mount the local Notificatons folder to the /app directory in the container
+  #   environment:
+  #     - FLASK_ENV=development # Set Flask environment to development for debugging
 
-  auth:
-    build: ./backend/auth
-    ports:
-      - "5002:5002"  # Expose the auth service on port 5002
-    volumes:
-      - ./backend/auth:/app  # Mount the local Auth folder to the /app directory in the container
-    environment:
-      - FLASK_ENV=development  # Set Flask environment to development for debugging
+  crudservice:
+    build: ./backend/crud
     depends_on:
-      - mongodb  # If MongoDB is required for user data storage
+      - mongodb
+    ports:
+      - "5000:5000" # Map port 5001 of the container to port 5001 on the host machine
+    volumes:
+      - ./backend/crud:/app # Mount the local Notificatons folder to the /app directory in the container
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # auth:
+  #   build: ./backend/auth
+  #   ports:
+  #     - "5002:5002" # Expose the auth service on port 5002
+  #   volumes:
+  #     - ./backend/auth:/app # Mount the local Auth folder to the /app directory in the container
+  #   environment:
+  #     - FLASK_ENV=development # Set Flask environment to development for debugging
+  #   depends_on:
+  #     - mongodb # If MongoDB is required for user data storage
 
   mongodb:
     image: mongo:latest
