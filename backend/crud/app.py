@@ -5,7 +5,7 @@ from bson import ObjectId
 
 # MongoDB Connection
 client = MongoClient("mongodb://mongodb:27017/")
-db = client['scrapit']
+db = client['Scrapit']
 collection = db['item']
 
 # FastAPI App
@@ -22,7 +22,7 @@ def service_msg():
     return {"message": "CRUD root"}
 
 @app.post("/boms", status_code=201)
-def create_bom(bom: dict):
+def create(bom: dict):
     """Create a new BoM."""
     if "bom_id" not in bom:
         raise HTTPException(status_code=400, detail="BoM must include 'bom_id'.")
@@ -32,12 +32,12 @@ def create_bom(bom: dict):
     return {"message": "BoM created successfully", "id": str(result.inserted_id)}
 
 @app.get("/boms", response_model=List[dict])
-def get_all_boms():
+def get_all():
     """Get all BoMs."""
     return [to_dict(bom) for bom in collection.find()]
 
 @app.get("/boms/{bom_id}", response_model=dict)
-def get_bom(bom_id: str):
+def get_by_id(bom_id: str):
     """Get a BoM by ID."""
     bom = collection.find_one({"bom_id": bom_id})
     if not bom:
@@ -45,7 +45,7 @@ def get_bom(bom_id: str):
     return to_dict(bom)
 
 @app.put("/boms/{bom_id}")
-def update_bom(bom_id: str, updates: dict):
+def update(bom_id: str, updates: dict):
     """Update an existing BoM."""
     result = collection.update_one({"bom_id": bom_id}, {"$set": updates})
     if result.matched_count == 0:
@@ -53,7 +53,7 @@ def update_bom(bom_id: str, updates: dict):
     return {"message": "BoM updated successfully."}
 
 @app.delete("/boms/{bom_id}")
-def delete_bom(bom_id: str):
+def delete(bom_id: str):
     """Delete a BoM by ID."""
     result = collection.delete_one({"bom_id": bom_id})
     if result.deleted_count == 0:
