@@ -19,6 +19,6 @@ EXPOSE 5000
 #CMD ["python", "app.py"]
 
 # Run the app
-#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
 
-CMD ["pytest", "--junitxml=/app/test_results/results.xml"]
+#CMD ["pytest", "--junitxml=/app/test_results/results.xml"]
