@@ -23,6 +23,7 @@ services:
       - "5000:5000" # Map port 5001 of the container to port 5001 on the host machine
     volumes:
       - ./backend/crud:/app # Mount the local Notificatons folder to the /app directory in the container
+      - ./test_results:/app/test_results
     environment:
       - PYTHONUNBUFFERED=1
 

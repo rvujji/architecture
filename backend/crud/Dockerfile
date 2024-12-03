@@ -9,7 +9,9 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code into the container
-COPY app.py /app/
+COPY app.py /
+COPY db_manager.py /
+COPY test_app.py /
 
 # Expose port 5001 for Notification Service
 EXPOSE 5000
@@ -20,3 +22,4 @@ EXPOSE 5000
 # Run the app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
 
+#CMD ["pytest", "--junitxml=/app/test_results/results.xml"]
