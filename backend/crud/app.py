@@ -33,13 +33,20 @@ def service_msg():
 @app.post("/record", status_code=201)
 def create(rec: dict):
     """Create a new rec."""
-    logger.info("post rec_id = " + rec["rec_id"])
-    if "rec_id" not in rec:
-        raise HTTPException(status_code=400, detail="rec must include 'rec_id'.")
-    if db_manager.find_by_id(rec["rec_id"]):
-        raise HTTPException(status_code=400, detail="rec with this ID already exists.")
-    result = db_manager.insert(rec)
-    return {"message": "rec created successfully", "id": str(result.inserted_id)}
+    try: 
+        logger.info("post rec_id = " + rec["rec_id"])
+        if "rec_id" not in rec:
+            raise HTTPException(status_code=400, detail="rec must include 'rec_id'.")
+        if db_manager.find_by_id(rec["rec_id"]):
+            raise HTTPException(status_code=400, detail="rec with this ID already exists.")
+        result = db_manager.insert(rec)
+        logger.info("saved rec_id = " + rec["rec_id"])
+        return {"message": "rec created successfully", "id": str(result.inserted_id)}
+    except HTTPException as http_exc:
+        logger.error(f"HTTP Exception: {http_exc.detail}")
+    except Exception as exc:
+        logger.error(f"An error occurred: {str(exc)}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")    
 
 @app.get("/record", response_model=List[dict])
 def get_all():
