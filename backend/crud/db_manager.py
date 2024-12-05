@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from bson import ObjectId
-#from pymongo import PyMongoError
+from pymongo.errors import PyMongoError
 
 class DatabaseManager:
     def __init__(self, connection_string: str, db_name: str, collection_name: str, max_pool_size: int = 100, min_pool_size: int = 1):
@@ -19,13 +19,13 @@ class DatabaseManager:
         return list(self.collection.find())
 
     def find_by_id(self, identifier: str):
-        return self.collection.find_one({"bom_id": identifier})
+        return self.collection.find_one({"rec_id": identifier})
 
     def update(self, identifier: str, updates: dict):
-        return self.collection.update_one({"bom_id": identifier}, {"$set": updates})
+        return self.collection.update_one({"rec_id": identifier}, {"$set": updates})
 
     def delete(self, identifier: str):
-        return self.collection.delete_one({"bom_id": identifier})
+        return self.collection.delete_one({"rec_id": identifier})
 
     @staticmethod
     def to_dict(item):
@@ -59,7 +59,7 @@ class DatabaseManager:
     def update_operations(session):
         # Update the item in the item_collection
         db_manager.item_collection.update_one(
-            {"bom_id": item_id}, {"$set": item_updates}, session=session
+            {"rec_id": item_id}, {"$set": item_updates}, session=session
         )
         # Insert a log entry into the log_collection
         db_manager.log_collection.insert_one(log_entry, session=session)
@@ -78,7 +78,7 @@ class DatabaseManager:
     # Example item update and log entry
     item_id = "101"
     item_updates = {"status": "updated", "last_updated": "2024-11-29"}
-    log_entry = {"operation": "update", "bom_id": item_id, "timestamp": "2024-11-29T10:00:00Z"}
+    log_entry = {"operation": "update", "rec_id": item_id, "timestamp": "2024-11-29T10:00:00Z"}
 
     # Execute the transaction
     result = update_item_and_log(db_manager, item_id, item_updates, log_entry)

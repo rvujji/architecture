@@ -3,16 +3,21 @@ from pymongo import MongoClient
 from typing import List
 from bson import ObjectId
 from db_manager import DatabaseManager
+import os
+import logging
+import logging_config
 
 # MongoDB Connection, Initialize Database Manager
 db_manager = DatabaseManager(
-    connection_string="mongodb://mongodb:27017/",
-    db_name="Scrapit",
-    collection_name="item"
+    connection_string = os.environ.get("DBCONNECTIONSTRING"),
+    db_name = os.environ.get("DBNAME"),
+    collection_name = os.environ.get("DBCOLLECTION")
 )
 
 # FastAPI App
 app = FastAPI()
+
+logger = logging.getLogger(__name__)
 
 # Helper Function to Convert BSON ObjectId
 def to_dict(item):
@@ -25,41 +30,43 @@ def service_msg():
     return {"message": "CRUD root"}
 
 
-@app.post("/boms", status_code=201)
-def create(bom: dict):
-    """Create a new BoM."""
-    if "bom_id" not in bom:
-        raise HTTPException(status_code=400, detail="BoM must include 'bom_id'.")
-    if db_manager.find_by_id(bom["bom_id"]):
-        raise HTTPException(status_code=400, detail="BoM with this ID already exists.")
-    result = db_manager.insert(bom)
-    return {"message": "BoM created successfully", "id": str(result.inserted_id)}
+@app.post("/record", status_code=201)
+def create(rec: dict):
+    """Create a new rec."""
+    logger.info("post rec_id = " + rec["rec_id"])
+    if "rec_id" not in rec:
+        raise HTTPException(status_code=400, detail="rec must include 'rec_id'.")
+    if db_manager.find_by_id(rec["rec_id"]):
+        raise HTTPException(status_code=400, detail="rec with this ID already exists.")
+    result = db_manager.insert(rec)
+    return {"message": "rec created successfully", "id": str(result.inserted_id)}
 
-@app.get("/boms", response_model=List[dict])
+@app.get("/record", response_model=List[dict])
 def get_all():
-    """Get all BoMs."""
-    return [db_manager.to_dict(bom) for bom in db_manager.find_all()]
+    """Get all recs."""
+    return [db_manager.to_dict(rec) for rec in db_manager.find_all()]
 
-@app.get("/boms/{bom_id}", response_model=dict)
-def get_by_id(bom_id: str):
-    """Get a BoM by ID."""
-    bom = db_manager.find_by_id(bom_id)
-    if not bom:
-        raise HTTPException(status_code=404, detail="BoM not found.")
-    return db_manager.to_dict(bom)
+@app.get("/record/{rec_id}", response_model=dict)
+def get_by_id(rec_id: str):
+    """Get a rec by ID."""
+    logger.info("get red_id = " + rec_id)
+    rec = db_manager.find_by_id(rec_id)
+    if not rec:
+        raise HTTPException(status_code=404, detail="rec not found.")
+    return db_manager.to_dict(rec)
 
-@app.put("/boms/{bom_id}")
-def update(bom_id: str, updates: dict):
-    """Update an existing BoM."""
-    result = db_manager.update(bom_id, updates)
+@app.put("/record/{rec_id}")
+def update(rec_id: str, updates: dict):
+    """Update an existing rec."""
+    result = db_manager.update(rec_id, updates)
     if result.matched_count == 0:
-        raise HTTPException(status_code=404, detail="BoM not found.")
-    return {"message": "BoM updated successfully."}
+        raise HTTPException(status_code=404, detail="rec not found.")
+    return {"message": "rec updated successfully."}
 
-@app.delete("/boms/{bom_id}")
-def delete(bom_id: str):
-    """Delete a BoM by ID."""
-    result = db_manager.delete(bom_id)
+@app.delete("/record/{rec_id}")
+def delete(rec_id: str):
+    """Delete a rec by ID."""
+    result = db_manager.delete(rec_id)
     if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="BoM not found.")
-    return {"message": "BoM deleted successfully."}
+        raise HTTPException(status_code=404, detail="rec not found.")
+    return {"message": "rec deleted successfully."}
