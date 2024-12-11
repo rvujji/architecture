@@ -1,0 +1,29 @@
+{
+  "reference": {
+    "id": 101,
+    "name": "Country",
+    "description": "Countries list",
+    "values": [
+      {
+        "id": 1,
+        "name": "India",
+        "parent_id": null
+      },
+      {
+        "id": 2,
+        "name": "United States",
+        "parent_id": null
+      },
+      {
+        "id": 11,
+        "name": "Andhra Pradesh",
+        "parent_id": 1
+      },
+      {
+        "id": 12,
+        "name": "Karnataka",
+        "parent_id": 1
+      }
+    ]
+  }
+}
