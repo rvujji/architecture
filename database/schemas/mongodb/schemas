@@ -1,0 +1,36 @@
+{
+    "screen": {
+        "screen_id": 789,
+		"org_id": 123,
+        "project_id": 456,
+        "name": "Screen Name",
+		"layout": 
+			{
+				"rows": 5,
+				"columns": 4,
+				"row_spans": [{{2,3},{4,5}, {3,4}}],
+				"col_spans": [{1,2}]
+			}
+		fields:["","","",""
+			{
+				label_name: "seller name",
+				row_no: 1,
+				column_no: 1,
+				"content_type": "FIELD {enum: "GRAPH","BLOCK","TABLE","MEDIA","FIELD"}",
+				"content": {
+					"collection_field": "owner_details.name",
+					"collection": "items"
+				}
+			},
+			{
+				label_name: "seller graph",
+				row_no: 1,
+				column_no: 2,
+				"content_type": "GRAPH {enum: "GRAPH","BLOCK","TABLE","MEDIA","FIELD"}",
+				"content": {
+					"api_json": "selling_frequency"
+				}
+			}
+		]
+    }
+}
