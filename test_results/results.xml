@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+    <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="10" time="8.360"
+        timestamp="2024-12-03T17:33:55.812257+00:00" hostname="01ba1a74f986">
+        <testcase classname="test_app" name="test_service_msg" time="0.070" />
+        <testcase classname="test_app" name="test_create" time="7.444" />
+        <testcase classname="test_app" name="test_create_duplicate" time="0.011" />
+        <testcase classname="test_app" name="test_get_all" time="0.010" />
+        <testcase classname="test_app" name="test_get_by_id" time="0.010" />
+        <testcase classname="test_app" name="test_get_bom_not_found" time="0.005" />
+        <testcase classname="test_app" name="test_update" time="0.010" />
+        <testcase classname="test_app" name="test_update_not_found" time="0.006" />
+        <testcase classname="test_app" name="test_delete" time="0.009" />
+        <testcase classname="test_app" name="test_delete_not_found" time="0.005" />
+    </testsuite>
+</testsuites>
