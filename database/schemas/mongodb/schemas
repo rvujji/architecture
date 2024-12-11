@@ -16,8 +16,9 @@
 				label_name: "seller name",
 				row_no: 1,
 				column_no: 1,
-				"content_type": "FIELD {enum: "GRAPH","BLOCK","TABLE","MEDIA","FIELD"}",
+				"content_type": "INPUT {enum: "GRAPH","BLOCK","TABLE","MEDIA","INPUT"}",
 				"content": {
+					"input_type": "TEXT" {enum: "TEXT", "PASSWORD","MESSAGE","TEXTAREA","DROPDOWN", "RADIO"},
 					"collection_field": "owner_details.name",
 					"collection": "items"
 				}
@@ -26,7 +27,7 @@
 				label_name: "seller graph",
 				row_no: 1,
 				column_no: 2,
-				"content_type": "GRAPH {enum: "GRAPH","BLOCK","TABLE","MEDIA","FIELD"}",
+				"content_type": "GRAPH {enum: "GRAPH","BLOCK","TABLE","MEDIA","INPUT"}",
 				"content": {
 					"api_json": "selling_frequency"
 				}
