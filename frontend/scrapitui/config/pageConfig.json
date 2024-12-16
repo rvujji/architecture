@@ -1,0 +1,54 @@
+{
+  "pageTitle": "Dynamic Form Page",
+  "layout": "vertical",
+  "components": [
+    {
+      "type": "Textbox",
+      "props": {
+        "label": "Name",
+        "name": "name",
+        "value": "",
+        "validation": {
+          "required": true,
+          "maxLength": 50,
+          "errorMessage": "Name is required and should be less than 50 characters."
+        }
+      }
+    },
+    {
+      "type": "Dropdown",
+      "props": {
+        "label": "Country",
+        "name": "country",
+        "value": "",
+        "options": [
+          { "value": "india", "label": "India" },
+          { "value": "usa", "label": "USA" },
+          { "value": "canada", "label": "Canada" }
+        ],
+        "validation": {
+          "required": true,
+          "errorMessage": "Please select a country."
+        }
+      }
+    },
+    {
+      "type": "Video",
+      "props": {
+        "src": "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        "controls": true
+      }
+    },
+    {
+      "type": "Table",
+      "props": {
+        "columns": ["Name", "Age", "Country"],
+        "rows": [
+          ["Alice", "25", "India"],
+          ["Bob", "30", "USA"],
+          ["Charlie", "35", "Canada"]
+        ]
+      }
+    }
+  ]
+}

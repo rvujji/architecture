@@ -8,26 +8,26 @@
 			{
 				"rows": 5,
 				"columns": 4,
-				"row_spans": [{{2,3},{4,5}, {3,4}}],
-				"col_spans": [{1,2}]
-			}
-		fields:["","","",""
+				"row_spans": [[2,3],[4,5], [3,4]],
+				"col_spans": [[1,2]]
+			},
+		"fields":[
 			{
-				label_name: "seller name",
-				row_no: 1,
-				column_no: 1,
-				"content_type": "INPUT {enum: "GRAPH","BLOCK","TABLE","MEDIA","INPUT"}",
+				"label_name": "seller name",
+				"row_no": 1,
+				"column_no": 1,
+				"content_type": "INPUT",
 				"content": {
-					"input_type": "TEXT" {enum: "TEXT", "PASSWORD","MESSAGE","TEXTAREA","DROPDOWN", "RADIO"},
+					"input_type": "TEXT",
 					"collection_field": "owner_details.name",
 					"collection": "items"
 				}
 			},
 			{
-				label_name: "seller graph",
-				row_no: 1,
-				column_no: 2,
-				"content_type": "GRAPH {enum: "GRAPH","BLOCK","TABLE","MEDIA","INPUT"}",
+				"label_name": "seller graph",
+				"row_no": 1,
+				"column_no": 2,
+				"content_type": "GRAPH",
 				"content": {
 					"api_json": "selling_frequency"
 				}
@@ -35,3 +35,5 @@
 		]
     }
 }
+"content_type" {enum: "GRAPH","BLOCK","TABLE","MEDIA","INPUT"}
+"input_type":  {enum: "TEXT", "PASSWORD","MESSAGE","TEXTAREA","DROPDOWN", "RADIO"}
