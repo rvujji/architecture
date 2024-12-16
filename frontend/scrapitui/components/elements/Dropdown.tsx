@@ -6,7 +6,7 @@ type Option = {
 };
 
 // Define the type for the props
-type DropdownProps = {
+export type DropdownProps = {
   label: string; // Label for the dropdown
   name: string; // Name and id for the dropdown
   options: Option[]; // Array of options for the dropdown

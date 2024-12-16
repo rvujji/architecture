@@ -7,7 +7,7 @@ type ValidationRules = {
   errorMessage?: string; // Custom error message
 };
 
-type TextboxProps = {
+export type TextboxProps = {
   label: string;
   name: string;
   value: string; // Value of the input field

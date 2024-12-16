@@ -1,5 +1,8 @@
 import { Text, View } from "react-native";
 import Crud from "@/components/Crud";
+import DynamicPage from "@/components/DynamicPage";
+import configData from "@/config/pageConfig.json";
+import { Config } from "@/components/DynamicPage";
 
 export default function Index() {
   return (
@@ -10,8 +13,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Crud />
+      <DynamicPage config={configData as Config} />;
     </View>
   );
 }

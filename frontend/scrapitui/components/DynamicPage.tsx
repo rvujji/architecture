@@ -1,57 +1,34 @@
+import React from "react";
 import { componentRegistry } from "@/components/registry/ComponentRegistry";
-import config from "@/config/config.json";
+import { TextboxProps } from "@/components/elements/Textbox";
+import { DropdownProps } from "@/components/elements/Dropdown";
+import { VideoProps } from "@/components/elements/Video";
+import { TableProps } from "@/components/elements/Table";
 
-const DynamicPage: React.FC = ({ config }) => {
+type ComponentConfig = {
+  type: keyof typeof componentRegistry; // The type of the component (e.g., "Textbox", "Dropdown")
+  props: TextboxProps | DropdownProps | VideoProps | TableProps; // The props to be passed to the component
+};
+
+export type Config = {
+  pageTitle: string; // Title of the page
+  layout: "vertical" | "horizontal"; // Layout type
+  components: ComponentConfig[]; // List of components
+};
+
+const DynamicPage: React.FC<{ config: Config }> = ({ config }) => {
   return (
     <div className={`layout-${config.layout}`}>
       <h1>{config.pageTitle}</h1>
       {config.components.map((component, index) => {
         const Component = componentRegistry[component.type];
-        return Component ? <Component key={index} {...component} /> : null;
+        return (
+          //@ts-ignore
+          <Component key={index} {...component.props} />
+        );
       })}
     </div>
   );
 };
 
 export default DynamicPage;
-
-<Textbox
-  label="Name"
-  name="username"
-  value={username}
-  onChange={(e) => setUsername(e.target.value)}
-/>;
-
-<Dropdown
-  label="Select Country"
-  name="country"
-  options={[
-    { label: "India", value: "IN" },
-    { label: "USA", value: "US" },
-    { label: "Canada", value: "CA" },
-  ]}
-  value={country}
-  onChange={(e) => setCountry(e.target.value)}
-/>;
-
-<Table
-  name="userTable"
-  columns={[
-    { header: "ID", field: "id" },
-    { header: "Name", field: "name" },
-    { header: "Email", field: "email" },
-  ]}
-  data="https://jsonplaceholder.typicode.com/users"
-/>;
-
-import React from "react";
-import Video from "./Video";
-
-const App: React.FC = () => {
-  return (
-    <div>
-      <h1>Video Example</h1>
-      <Video src="https://www.w3schools.com/html/mov_bbb.mp4" controls={true} />
-    </div>
-  );
-};

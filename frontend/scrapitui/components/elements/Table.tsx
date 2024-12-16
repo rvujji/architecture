@@ -7,7 +7,7 @@ type TableColumn = {
 };
 
 // Define the type for the props
-type TableProps = {
+export type TableProps = {
   name: string; // Name or id of the table
   columns: TableColumn[]; // Array of column definitions
   data: string | object[]; // Data as an array of objects or a URL for fetching

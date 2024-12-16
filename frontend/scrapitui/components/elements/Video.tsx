@@ -1,7 +1,7 @@
 import React from "react";
 
 // Define the type for the props
-type VideoProps = {
+export type VideoProps = {
   src: string; // The source of the video is a string
   controls?: boolean; // Controls are optional and default to true
 };
