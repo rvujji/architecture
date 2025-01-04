@@ -1,0 +1,61 @@
+{
+  "pageTitle": "Dynamic Form Page",
+  "layout": {
+    "gridTemplateColumns": "repeat(4, 1fr)", // 4 columns, equal width
+    "gridGap": "20px" // Space between grid items
+  },
+  "components": [
+    {
+      "type": "Textbox",
+      "colSpan": 2,
+      "props": {
+        "label": "Name",
+        "name": "name",
+        "value": "",
+        "placeholder": "Enter your name",
+        "validation": {
+          "required": true,
+          "maxLength": 50,
+          "errorMessage": "Name is required and should be less than 50 characters."
+        }
+      }
+    },
+    {
+      "type": "Dropdown",
+      "colSpan": 2,
+      "props": {
+        "label": "Country",
+        "name": "country",
+        "value": "",
+        "options": [
+          { "value": "india", "label": "India" },
+          { "value": "usa", "label": "USA" },
+          { "value": "canada", "label": "Canada" }
+        ],
+        "validation": {
+          "required": true,
+          "errorMessage": "Please select a country."
+        }
+      }
+    },
+    {
+      "type": "Video",
+      "colSpan": 2,
+      "props": {
+        "src": "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        "controls": true
+      }
+    },
+    {
+      "type": "Table",
+      "colSpan": 4,
+      "props": {
+        "headers": ["Name", "Age", "Country"],
+        "data": [
+          { "Name": "John", "Age": 25, "Country": "USA" },
+          { "Name": "Ananya", "Age": 30, "Country": "India" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+.layout-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.layout-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.crud-buttons {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.form-control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.table-container {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.video-container {
+  margin-top: 1rem;
+}
+
+.dynamic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default 4 columns, can be overridden dynamically */
+  grid-gap: 20px; /* Space between grid items */
+}
+
+.dynamic-grid-item {
+  background-color: #f1f1f1; /* Just to visualize the grid items */
+  padding: 20px;
+  border-radius: 8px;
+}

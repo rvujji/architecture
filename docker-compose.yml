@@ -22,9 +22,15 @@ services:
     ports:
       - "5000:5000" # Map port 5001 of the container to port 5001 on the host machine
     volumes:
-      - ./backend/crud:/app # Mount the local Notificatons folder to the /app directory in the container
+      - ./backend/crud:/app # Mount the local folder to the /app directory in the container
+      - ./test_results:/app/test_results
+      - ./logs:/app/logs
     environment:
       - PYTHONUNBUFFERED=1
+      - DBNAME=Scrapit
+      - DBCOLLECTION=item
+      - DBCONNECTIONSTRING=mongodb://mongodb:27017/
+      - SERVICE=item
 
   # auth:
   #   build: ./backend/auth
@@ -46,3 +52,5 @@ services:
       - type: bind
         source: D:/docker/mongo-data
         target: /data/db
+    environment:
+      - MONGOD_LOG_LEVEL=DEBUG
