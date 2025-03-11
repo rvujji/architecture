@@ -3,3 +3,5 @@ nvm use 20
 node -v
 
 npx @react-native-community/cli init HelloWorldApp
+cd HelloWorldApp
+npx react-native run-android
